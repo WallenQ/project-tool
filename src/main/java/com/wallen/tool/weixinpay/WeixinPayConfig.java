@@ -30,10 +30,12 @@ public class WeixinPayConfig implements WXPayConfig {
 		this.key = key;
 	}
 
+	@Override
 	public String getAppID() {
 		return appid;
 	}
 
+	@Override
 	public String getMchID() {
 		return mchid;
 	}
