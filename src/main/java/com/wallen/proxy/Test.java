@@ -36,15 +36,15 @@ public class Test {
 
 		BiscuitFactory biscuitFactory1 = new Bread();
 		//代购面包
-		company.setFactory(biscuitFactory);
+		company.setFactory(biscuitFactory1);
 		BiscuitFactory biscuit1 = (BiscuitFactory)company.getProxyInstance();
 		biscuit1.selectBiscuit("面包");
 
 		BiscuitFactory biscuitFactory2 = (BiscuitFactory)Class.forName("com.wallen.proxy.Bread").newInstance();
 		//代购面包2
-		company.setFactory(biscuitFactory);
+		company.setFactory(biscuitFactory2);
 		BiscuitFactory biscuit2 = (BiscuitFactory)company.getProxyInstance();
-		biscuit1.selectBiscuit("面包2222");
+		biscuitFactory2.selectBiscuit("面包2222");
 
 	}
 }
