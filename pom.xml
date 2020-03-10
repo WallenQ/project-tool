@@ -108,5 +108,17 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- google的二维码工具包来进行二维码的生成 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <!-- google的二维码工具包来进行二维码的生成 -->
     </dependencies>
 </project>
