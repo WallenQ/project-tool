@@ -120,5 +120,12 @@
             <version>3.3.0</version>
         </dependency>
         <!-- google的二维码工具包来进行二维码的生成 -->
+
+        <!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.11</version>
+        </dependency>
     </dependencies>
 </project>
