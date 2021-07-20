@@ -24,7 +24,6 @@ public class RabbitMQSend {
     private final static String QUEUE_NAME = "QUEUE_NAME";
 
     public static void main(String[] args) {
-        //申明通道发送消息的队列，把消息发送至消息队列‘hello’
         Map<String, Object> map = new HashMap<>(5);
         map.put("batteryVoltage", 430);
         map.put("deviceId", 6142);
@@ -42,7 +41,7 @@ public class RabbitMQSend {
      * 发送方法
      *
      * @param queue
-     * @param sendData
+     * @param sendData 消息内容为byte array, so可以自己随意编码
      * @throws IOException
      * @throws TimeoutException
      */
@@ -57,11 +56,10 @@ public class RabbitMQSend {
         Connection connection = factory.newConnection();
         String exchange = "section6";
 
-        //Declaring a queue is idempotent - 如果队列不存在则会创建一个队列
-        //消息内容为byte array, so可以自己随意编码
         //创建一个通道
         Channel channel = connection.createChannel();
         Map<String ,Object> map = new HashMap<>(1);
+        //申明通道发送消息的队列，把消息发送至消息队列 - 如果队列不存在则会创建一个队列
         channel.queueDeclare(queue, true, false, false, map);
         channel.basicPublish(exchange, queue, null, SerializationUtils.serialize((Serializable)sendData));
         //消息发送完成后，关闭通道和连接
