@@ -24,14 +24,14 @@ public class RabbitMQSend {
     private final static String QUEUE_NAME = "QUEUE_NAME";
 
     public static void main(String[] args) {
-        Map<String, Object> map = new HashMap<>(5);
-        map.put("batteryVoltage", 430);
-        map.put("deviceId", 6142);
-        map.put("deviceType", 3);
-        map.put("batterManufacturerNumber", 2);
-        map.put("maxChargingCurrent", 280);
+        Map<String, Object> sendData = new HashMap<>(5);
+        sendData.put("batteryVoltage", 430);
+        sendData.put("deviceId", 6142);
+        sendData.put("deviceType", 3);
+        sendData.put("batterManufacturerNumber", 2);
+        sendData.put("maxChargingCurrent", 280);
         try {
-            send(QUEUE_NAME, map);
+            send(QUEUE_NAME, sendData);
         } catch (IOException | TimeoutException e) {
             e.printStackTrace();
         }
