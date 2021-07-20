@@ -32,7 +32,7 @@ public class RabbitMQSend {
         map.put("batterManufacturerNumber", 2);
         map.put("maxChargingCurrent", 280);
         try {
-            send(QUEUE_NAME,SerializationUtils.serialize((Serializable) map));
+            send(QUEUE_NAME, map);
         } catch (IOException | TimeoutException e) {
             e.printStackTrace();
         }
@@ -46,7 +46,7 @@ public class RabbitMQSend {
      * @throws IOException
      * @throws TimeoutException
      */
-    public static void send (String queue,byte[] sendData) throws IOException, TimeoutException {
+    public static void send (String queue,Object sendData) throws IOException, TimeoutException {
         //创建一个连接
         ConnectionFactory factory = new ConnectionFactory();
         //连接本地，如果需要指定到服务，需在这里指定IP
@@ -63,7 +63,7 @@ public class RabbitMQSend {
         Channel channel = connection.createChannel();
         Map<String ,Object> map = new HashMap<>(1);
         channel.queueDeclare(queue, true, false, false, map);
-        channel.basicPublish(exchange, queue, null, sendData);
+        channel.basicPublish(exchange, queue, null, SerializationUtils.serialize((Serializable)sendData));
         //消息发送完成后，关闭通道和连接
         channel.close();
 
