@@ -18,6 +18,8 @@
 
 更新日志
 -----------------------------------
+- 2022年4月15日：数据库账号密码加密
+  https://blog.csdn.net/wangmx1993328/article/details/106421101
 - 2021年7月19日：rabbitmq发送方法
 - 2020年8月18日：数据库表结构文档生成工具 https://gitee.com/leshalv/screw
 - 2020年5月7日：google开源工具Thumbnailator实现图片压缩

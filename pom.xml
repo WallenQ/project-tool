@@ -3,13 +3,42 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.4</version>
+        <relativePath/>
+    </parent>
     <groupId>com.wallen</groupId>
     <artifactId>project-tool</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -35,12 +64,6 @@
             <version>3.1.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>4.2.4.RELEASE</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/com.github.wxpay/wxpay-sdk -->
         <dependency>
             <groupId>com.github.wxpay</groupId>
@@ -63,12 +86,6 @@
             <version>4.7.12.ALL</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>2.0.0.Final</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
@@ -76,33 +93,7 @@
             <version>6.0.18.Final</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-el-api</artifactId>
-            <version>8.5.24</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jasper-el</artifactId>
-            <version>8.5.24</version>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- google的二维码工具包来进行二维码的生成 -->
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>core</artifactId>
-            <version>3.3.0</version>
-        </dependency>
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>
@@ -130,6 +121,13 @@
             <artifactId>commons-lang</artifactId>
             <version>2.5</version>
         </dependency>
+
+        <!--spring boot整合jasypt-->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>3.0.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -150,24 +148,24 @@
             </plugin>
             <!--导出数据库文档的插件-->
             <!-- https://gitee.com/leshalv/screw -->
-            <plugin>
+            <!--<plugin>
                 <groupId>cn.smallbun.screw</groupId>
                 <artifactId>screw-maven-plugin</artifactId>
                 <version>1.0.3</version>
                 <dependencies>
-                    <!-- HikariCP -->
+                    &lt;!&ndash; HikariCP &ndash;&gt;
                     <dependency>
                         <groupId>com.zaxxer</groupId>
                         <artifactId>HikariCP</artifactId>
                         <version>3.4.5</version>
                     </dependency>
-                    <!--mysql driver-->
-                    <!--<dependency>
+                    &lt;!&ndash;mysql driver&ndash;&gt;
+                    &lt;!&ndash;<dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
                         <version>8.0.20</version>
-                    </dependency>-->
-                    <!--oracle驱动-->
+                    </dependency>&ndash;&gt;
+                    &lt;!&ndash;oracle驱动&ndash;&gt;
                     <dependency>
                         <groupId>com.oracle.ojdbc</groupId>
                         <artifactId>ojdbc8</artifactId>
@@ -180,33 +178,26 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <!--username-->
                     <username>c##tms</username>
-                    <!--password-->
                     <password>tms</password>
-                    <!--oracle driver-->
+                    &lt;!&ndash;oracle driver&ndash;&gt;
                     <driverClassName>oracle.jdbc.driver.OracleDriver</driverClassName>
-                    <!--mysql driver-->
-                    <!--<driverClassName>com.mysql.cj.jdbc.Driver</driverClassName>-->
-                    <!--jdbc url-->
+                    &lt;!&ndash;mysql driver&ndash;&gt;
+                    &lt;!&ndash;<driverClassName>com.mysql.cj.jdbc.Driver</driverClassName>&ndash;&gt;
                     <jdbcUrl>jdbc:oracle:thin:@192.168.145.236:1521/pdborcl</jdbcUrl>
-                    <!--生成文件类型,支持 MD、HTML、WORD 格式-->
+                    &lt;!&ndash;生成文件类型,支持 MD、HTML、WORD 格式&ndash;&gt;
                     <fileType>HTML</fileType>
-                    <!--文件输出目录-->
+                    &lt;!&ndash;文件输出目录&ndash;&gt;
                     <fileOutputDir>D:\</fileOutputDir>
-                    <!--打开文件输出目录-->
+                    &lt;!&ndash;打开文件输出目录&ndash;&gt;
                     <openOutputDir>false</openOutputDir>
-                    <!--生成模板-->
+                    &lt;!&ndash;生成模板&ndash;&gt;
                     <produceType>freemarker</produceType>
-                    <!--文档名称 为空时:将采用[数据库名称-描述-版本号]作为文档名称-->
-                    <!--<docName>测试文档名称</docName>-->
-                    <!--描述-->
+                    &lt;!&ndash;<docName>测试文档名称 为空时:将采用[数据库名称-描述-版本号]作为文档名称</docName>&ndash;&gt;
                     <description>数据库文档生成</description>
-                    <!--版本-->
                     <version>${project.version}</version>
-                    <!--标题-->
                     <title>TMS数据库文档</title>
-                    <!--忽略表前缀-->
+                    &lt;!&ndash;忽略表前缀&ndash;&gt;
                     <tablePrefix>ACT_,QRTZ_,XXL_,API_,CFC_</tablePrefix>
                 </configuration>
                 <executions>
@@ -217,7 +208,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 </project>

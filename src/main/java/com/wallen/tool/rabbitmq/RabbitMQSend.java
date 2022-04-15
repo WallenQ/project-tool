@@ -49,9 +49,9 @@ public class RabbitMQSend {
         //创建一个连接
         ConnectionFactory factory = new ConnectionFactory();
         //连接本地，如果需要指定到服务，需在这里指定IP
-        factory.setHost("192.168.0.11");
+        factory.setHost("127.0.0.1");
         factory.setPort(5672);
-        factory.setUsername("user1");
+        factory.setUsername("rcs-test");
         factory.setPassword("123456");
         Connection connection = factory.newConnection();
         String exchange = "section6";

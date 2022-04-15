@@ -18,7 +18,7 @@ import java.util.Map;
  * 2019/11/7 16:28
  */
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/weixin")
 public class WeixinPayController {
 	@Autowired
 	private WeixinPayService weixinPayService;

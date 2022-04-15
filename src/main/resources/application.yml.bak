@@ -1,0 +1,13 @@
+#jasypt参数
+jasypt:
+  encryptor:
+    password: 123abc
+    algorithm: PBEWithHmacSHA512AndAES_128
+
+  # Mysql配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&useTimezone=true&serverTimezone=GMT%2B8
+    username: ENC(NOvUJAc5TcmQnSJtpXi1eg==)
+    password: ENC(apJh0elfy//pAKx3G6LEUVuP6CRYU/Yw)

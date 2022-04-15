@@ -18,7 +18,7 @@ import java.util.Map;
  * 2019/11/8 9:30
  */
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/api/ali")
 public class AliPayController {
 	@RequestMapping(value = "loginToken")
 	@ResponseBody
