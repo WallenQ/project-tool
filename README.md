@@ -3,8 +3,10 @@
 
 ### 目录结构
 ```
-├─工具
+├─tool
 │  ├─阿里支付基础代码（alipay）
+│  ├─http
+│  │  ├─HttpRequestUtil:网络请求
 │  ├─生成二维码（qrcode）
 │  ├─google开源工具Thumbnailator实现图片压缩
 │  ├─友盟消息推送（upush）
@@ -18,6 +20,7 @@
 
 更新日志
 -----------------------------------
+- 2023年1月17日：网络请求工具类
 - 2022年4月15日：数据库账号密码加密
   https://blog.csdn.net/wangmx1993328/article/details/106421101
 - 2021年7月19日：rabbitmq发送方法
